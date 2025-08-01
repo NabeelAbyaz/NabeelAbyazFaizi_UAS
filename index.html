@@ -1,0 +1,348 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Toko Gitar BLITZ</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdfaf6;
+      color: #333;
+    }
+    header, footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    nav {
+      background-color: #ff9900;
+      text-align: center;
+      padding: 15px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover { text-decoration: underline; }
+    .marquee {
+      background-color: #ffe680;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      padding: 20px;
+    }
+    .sidebar {
+      width: 25%;
+      padding: 20px;
+      background-color: #fff2cc;
+    }
+    .content {
+      width: 75%;
+      padding: 20px;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product {
+      width: 220px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .product .price { color: green; font-weight: bold; }
+    .product button {
+      margin-top: 10px;
+      background-color: #ff9900;
+      border: none;
+      padding: 8px 12px;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .popup-content {
+      background: white;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      position: relative;
+      text-align: center;
+    }
+    .popup-content img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 10px;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    .form-group button {
+      width: 100%; padding: 10px;
+      background-color: #00aaff;
+      color: white; font-weight: bold;
+      border: none; border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .invoice {
+      margin-top: 30px;
+      background: #f3f3f3;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .about-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 40px;
+      gap: 20px;
+      justify-content: center;
+    }
+    .about-text { flex: 2; }
+    .about-profile { flex: 1; text-align: center; }
+    .about-profile img {
+      border-radius: 50%;
+      width: 150px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Toko Gitar BLITZ</h1>
+</header>
+
+<marquee style="background-color: #ffe680; color: black;" behavior="scroll" direction="left" scrollamount="5">
+  Selamat datang di Toko Gitar BLITZ – Kualitas Terjamin, Harga Bersahabat!
+</marquee>
+
+<nav>
+  <a href="#beranda">Beranda</a>
+  <a href="#transaksi">Transaksi</a>
+  <a href="#tentang">Tentang Kami</a>
+</nav>
+
+<section id="beranda" class="container">
+  <aside class="sidebar">
+    <h3>Kategori</h3>
+    <ul>
+      <li>🎵 Gitar Akustik</li>
+      <li>🎸 Gitar Elektrik</li>
+      <li>🔊 Ampli</li>
+    </ul>
+  </aside>
+  <div class="content">
+    <h2>Daftar Produk</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="Gitar1.jpg" alt="Gitar Akustik">
+        <h3>Gitar Akustik</h3>
+        <p class="price">Rp 1.200.000</p>
+        <button onclick="tampilkanPopup('Gitar1.jpg','Gitar Akustik','Rp 1.200.000','Gitar akustik cocok untuk pemula maupun profesional.')">Detail</button>
+        <button onclick="beliProduk('Gitar Akustik')">Beli</button>
+      </div>
+
+      <div class="product">
+        <img src="Gitar2.jpg" alt="Gitar Elektrik">
+        <h3>Gitar Elektrik</h3>
+        <p class="price">Rp 2.500.000</p>
+        <button onclick="tampilkanPopup('Gitar2.jpg','Gitar Elektrik','Rp 2.500.000','Gitar elektrik cocok untuk berbagai genre musik.')">Detail</button>
+        <button onclick="beliProduk('Gitar Elektrik')">Beli</button>
+      </div>
+
+      <div class="product">
+        <img src="Ampli.jpg" alt="Ampli">
+        <h3>Ampli</h3>
+        <p class="price">Rp 1.000.000</p>
+        <button onclick="tampilkanPopup('Ampli.jpg','Ampli','Rp 1.000.000','Amplifier dengan kualitas suara yang jernih dan bertenaga.')">Detail</button>
+        <button onclick="beliProduk('Ampli')">Beli</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-content">
+      <span class="popup-close" onclick="tutupPopup()">×</span>
+      <img id="popup-img" src="" alt="Gambar Produk">
+      <h3 id="popup-nama">Nama Produk</h3>
+      <p id="popup-harga" class="price">Harga</p>
+      <p id="popup-deskripsi">Deskripsi produk akan tampil di sini.</p>
+      <button onclick="beliDariPopup()">Beli Sekarang</button>
+    </div>
+  </div>
+
+<section id="transaksi" class="form-container">
+  <h2>Formulir Transaksi</h2>
+  <form onsubmit="return submitForm()">
+    <div class="form-group">
+      <label for="nama">Nama Lengkap</label>
+      <input type="text" id="nama" required>
+    </div>
+    <div class="form-group">
+      <label for="alamat">Alamat</label>
+      <textarea id="alamat" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="hp">No HP</label>
+      <input type="tel" id="hp" required>
+    </div>
+    <div class="form-group">
+      <label for="produk">Pilih Produk</label>
+      <select id="produk">
+        <option value="akustik">Gitar Akustik</option>
+        <option value="elektrik">Gitar Elektrik</option>
+        <option value="ampli">Ampli</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="jumlah">Jumlah</label>
+      <input type="number" id="jumlah" min="1" value="1">
+    </div>
+    <div class="form-group">
+      <button type="submit">Kirim Pesanan</button>
+    </div>
+  </form>
+  <div class="invoice" id="invoice">
+    <h3>Struk Pemesanan</h3>
+    <div id="invoice-content"></div>
+  </div>
+</section>
+
+<section id="tentang" class="about-container">
+  <div class="about-text">
+    <h2>Tentang Kami</h2>
+    <p><strong>Toko Gitar BLITZ</strong> adalah toko alat musik terpercaya yang menyediakan gitar akustik, elektrik, dan perlengkapannya sejak 2020.</p>
+    <p><strong>Kontak:</strong><br>
+    ✉ Email: Nabeelabyazfaizi@goggle.com<br>
+    ☎ Telepon: 0812-3456-7890</p>
+  </div>
+  <div class="about-profile">
+    <img src="abel1.jpg" alt=>
+    <h3>Nabeel Abyaz Faizi</h3>
+	<p>10524071</p>
+	<p>IS-2</p>
+    <p>Mahasiswa Sistem Informasi<br>Universitas Komputer Indonesia</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Toko Gitar BLITZ – Semua Hak Dilindungi
+</footer>
+
+<script>
+  function tampilkanPopup(gambar, nama, harga, deskripsi) {
+    document.getElementById("popup-img").src = gambar;
+    document.getElementById("popup-nama").innerText = nama;
+    document.getElementById("popup-harga").innerText = harga;
+    document.getElementById("popup-deskripsi").innerText = deskripsi;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function tutupPopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function beliDariPopup() {
+    const namaProduk = document.getElementById("popup-nama").innerText;
+    beliProduk(namaProduk);
+    tutupPopup();
+  }
+
+  function beliProduk(namaProduk) {
+    if (namaProduk.toLowerCase().includes("akustik")) {
+      document.getElementById("produk").value = "akustik";
+    } else if (namaProduk.toLowerCase().includes("elektrik")) {
+      document.getElementById("produk").value = "elektrik";
+    } else if (namaProduk.toLowerCase().includes("ampli")) {
+      document.getElementById("produk").value = "ampli";
+    }
+    location.href = "#transaksi";
+  }
+
+  function submitForm() {
+    const nama = document.getElementById('nama').value;
+    const alamat = document.getElementById('alamat').value;
+    const hp = document.getElementById('hp').value;
+    const produk = document.getElementById('produk').value;
+    const jumlah = document.getElementById('jumlah').value;
+
+    if (!nama || !alamat || !hp) {
+      alert("Harap lengkapi semua data!");
+      return false;
+    }
+
+    let harga = 0;
+    if (produk === "akustik") harga = 1200000;
+    else if (produk === "elektrik") harga = 2500000;
+    else if (produk === "ampli") harga = 1000000;
+
+    const total = harga * jumlah;
+
+    document.getElementById("invoice-content").innerHTML = `
+      <p><strong>Nama:</strong> ${nama}</p>
+      <p><strong>Alamat:</strong> ${alamat}</p>
+      <p><strong>Nomor HP:</strong> ${hp}</p>
+      <p><strong>Produk:</strong> ${produk}</p>
+      <p><strong>Jumlah:</strong> ${jumlah}</p>
+      <p><strong>Total Harga:</strong> Rp ${total.toLocaleString('id-ID')}</p>
+    `;
+    document.getElementById("invoice").scrollIntoView({ behavior: 'smooth' });
+
+    alert("Terima kasih, " + nama + "! Pesanan Anda telah dikirim.");
+    return false;
+  }
+</script>
+
+</body>
+</html>
